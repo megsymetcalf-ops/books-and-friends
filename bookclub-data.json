@@ -76,6 +76,14 @@
       "rating": 5,
       "text": "The best book I have read in years.",
       "date": "2026-02-04"
+    },
+    {
+      "id": 3,
+      "memberId": 1,
+      "bookId": 3,
+      "rating": 4,
+      "text": "Fun and well written. Decent values other than murder....",
+      "date": "2026-02-04"
     }
   ],
   "transactions": [],
@@ -90,7 +98,7 @@
     "member": 3,
     "meeting": 1,
     "reading": 4,
-    "review": 3,
+    "review": 4,
     "transaction": 1
   }
 }
