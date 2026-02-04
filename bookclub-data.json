@@ -42,6 +42,12 @@
       "name": "Debbie Rautenbach",
       "email": "d.rautenbach@icloud.com",
       "isAdmin": true
+    },
+    {
+      "id": 3,
+      "name": "Meg Test",
+      "email": "megan_metcalf@hotmail.co.uk",
+      "isAdmin": false
     }
   ],
   "meetings": [
@@ -109,7 +115,7 @@
   },
   "nextId": {
     "book": 7,
-    "member": 3,
+    "member": 4,
     "meeting": 2,
     "reading": 4,
     "review": 3,
