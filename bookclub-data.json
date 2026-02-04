@@ -6,6 +6,13 @@
       "author": "Amor Towles",
       "isbn": "",
       "year": 2016
+    },
+    {
+      "id": 2,
+      "title": "Winter garden",
+      "author": "Kristin Hannah, Susan Ericksen, Inés Belaustegui Trias",
+      "isbn": "",
+      "year": 2010
     }
   ],
   "members": [],
@@ -19,7 +26,7 @@
     "path": "bookclub-data.json"
   },
   "nextId": {
-    "book": 2,
+    "book": 3,
     "member": 1,
     "meeting": 1,
     "reading": 1,
