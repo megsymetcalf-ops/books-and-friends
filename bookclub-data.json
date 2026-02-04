@@ -75,6 +75,14 @@
       "rating": 5,
       "text": "Best book I've read in ages.",
       "date": "2026-02-04"
+    },
+    {
+      "id": 2,
+      "memberId": 1,
+      "bookId": 3,
+      "rating": 4,
+      "text": "Fun and light-hearted with fairly decent values other than murder",
+      "date": "2026-02-04"
     }
   ],
   "transactions": [
@@ -97,7 +105,7 @@
     "member": 3,
     "meeting": 2,
     "reading": 4,
-    "review": 2,
+    "review": 3,
     "transaction": 2
   },
   "clubName": "Books and Friends"
