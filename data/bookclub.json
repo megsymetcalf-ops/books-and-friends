@@ -1,7 +1,14 @@
 {
   "clubName": "Book Club",
   "books": [],
-  "members": [],
+  "members": [
+    {
+      "id": 1,
+      "name": "megsy.metcalf@gmail.com",
+      "email": "megsy.metcalf@gmail.com",
+      "isAdmin": true
+    }
+  ],
   "meetings": [],
   "readings": [],
   "reviews": [],
@@ -14,7 +21,7 @@
   },
   "nextId": {
     "book": 1,
-    "member": 1,
+    "member": 2,
     "meeting": 1,
     "reading": 1,
     "review": 1,
