@@ -17,9 +17,16 @@
     {
       "id": 4,
       "title": "Winter garden",
-      "author": "Kristin Hannah, Susan Ericksen, Inés Belaustegui Trias",
+      "author": "Kristin Hannah, Susan Ericksen, InÃ©s Belaustegui Trias",
       "isbn": "",
       "year": 2010
+    },
+    {
+      "id": 5,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "isbn": "",
+      "year": 1813
     }
   ],
   "members": [
@@ -77,7 +84,7 @@
     "path": "bookclub-data.json"
   },
   "nextId": {
-    "book": 5,
+    "book": 6,
     "member": 2,
     "meeting": 1,
     "reading": 4,
