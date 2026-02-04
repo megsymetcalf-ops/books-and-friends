@@ -8,6 +8,13 @@
       "isbn": "",
       "year": 2010,
       "genre": ""
+    },
+    {
+      "id": 2,
+      "title": "A Gentleman in Moscow",
+      "author": "Amor Towles",
+      "isbn": "",
+      "year": 2016
     }
   ],
   "members": [
@@ -45,7 +52,7 @@
     "sharedToken": "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"
   },
   "nextId": {
-    "book": 2,
+    "book": 3,
     "member": 2,
     "meeting": 1,
     "reading": 2,
