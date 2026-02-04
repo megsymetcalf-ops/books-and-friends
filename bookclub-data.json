@@ -16,6 +16,13 @@
       "isbn": "",
       "year": 2016,
       "genre": "Historial Fiction"
+    },
+    {
+      "id": 3,
+      "title": "The Thursday Murder Club",
+      "author": "Richard Osman",
+      "isbn": "",
+      "year": 2020
     }
   ],
   "members": [
@@ -73,7 +80,7 @@
     "sharedToken": "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"
   },
   "nextId": {
-    "book": 3,
+    "book": 4,
     "member": 3,
     "meeting": 1,
     "reading": 3,
