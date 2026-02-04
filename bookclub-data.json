@@ -26,7 +26,16 @@
   "meetings": [],
   "readings": [],
   "reviews": [],
-  "transactions": [],
+  "transactions": [
+    {
+      "id": 1,
+      "type": "contribution",
+      "memberId": 1,
+      "amount": 690,
+      "description": "Balance Adjustment: Initial balance",
+      "date": "2026-02-04"
+    }
+  ],
   "sharedConfig": {
     "username": "megsymetcalf-ops",
     "repo": "books-and-friends",
@@ -38,6 +47,6 @@
     "meeting": 1,
     "reading": 1,
     "review": 1,
-    "transaction": 1
+    "transaction": 2
   }
 }
