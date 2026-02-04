@@ -10,9 +10,16 @@
     {
       "id": 2,
       "title": "Winter garden",
-      "author": "Kristin Hannah, Susan Ericksen, InÃÂÃÂÃÂÃÂ©s Belaustegui Trias",
+      "author": "Kristin Hannah, Susan Ericksen, InÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s Belaustegui Trias",
       "isbn": "",
       "year": 2010
+    },
+    {
+      "id": 3,
+      "title": "The Thursday Murder Club",
+      "author": "Richard Osman",
+      "isbn": "",
+      "year": 2020
     }
   ],
   "members": [
@@ -58,7 +65,7 @@
     "path": "bookclub-data.json"
   },
   "nextId": {
-    "book": 3,
+    "book": 4,
     "member": 2,
     "meeting": 1,
     "reading": 2,
