@@ -107,8 +107,7 @@
   "sharedConfig": {
     "username": "megsymetcalf-ops",
     "repo": "books-and-friends",
-    "path": "bookclub-data.json",
-    "sharedToken": "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"
+    "path": "bookclub-data.json"
   },
   "nextId": {
     "book": 4,
