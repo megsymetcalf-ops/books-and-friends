@@ -7,6 +7,12 @@
       "name": "megsy.metcalf@gmail.com",
       "email": "megsy.metcalf@gmail.com",
       "isAdmin": true
+    },
+    {
+      "id": 2,
+      "name": "test meg",
+      "email": "megan_metcalf@hotmail.co.uk",
+      "isAdmin": false
     }
   ],
   "meetings": [],
@@ -21,7 +27,7 @@
   },
   "nextId": {
     "book": 1,
-    "member": 2,
+    "member": 3,
     "meeting": 1,
     "reading": 1,
     "review": 1,
