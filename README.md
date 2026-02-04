@@ -1,2 +1,2 @@
-# books-friends-demo2
+# books-and-friends
 Books and friends test private
