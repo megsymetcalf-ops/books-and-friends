@@ -21,6 +21,13 @@
       "isbn": "",
       "year": 2010,
       "genre": ""
+    },
+    {
+      "id": 6,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "isbn": "",
+      "year": 1813
     }
   ],
   "members": [
@@ -101,7 +108,7 @@
     "path": "bookclub-data.json"
   },
   "nextId": {
-    "book": 6,
+    "book": 7,
     "member": 3,
     "meeting": 2,
     "reading": 4,
