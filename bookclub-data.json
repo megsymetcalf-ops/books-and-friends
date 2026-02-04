@@ -19,14 +19,6 @@
       "phone": "",
       "joinDate": "2024-08-04",
       "booksRead": 1
-    },
-    {
-      "id": 1770214320591,
-      "name": "Debbie Rautenbach",
-      "email": "",
-      "phone": "",
-      "joinDate": "2026-02-04",
-      "booksRead": 0
     }
   ],
   "meetings": [
@@ -57,5 +49,10 @@
       "date": "2026-02-04T12:04:00.456Z"
     }
   ],
-  "transactions": []
+  "transactions": [],
+  "sharedConfig": {
+    "username": "megsymetcalf-ops",
+    "repo": "books-and-friends",
+    "path": "bookclub-data.json"
+  }
 }
