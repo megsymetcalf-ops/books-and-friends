@@ -13,6 +13,13 @@
       "author": "Richard Osman",
       "isbn": "",
       "year": 2020
+    },
+    {
+      "id": 4,
+      "title": "Winter garden",
+      "author": "Kristin Hannah, Susan Ericksen, Inés Belaustegui Trias",
+      "isbn": "",
+      "year": 2010
     }
   ],
   "members": [
@@ -64,7 +71,7 @@
     "path": "bookclub-data.json"
   },
   "nextId": {
-    "book": 4,
+    "book": 5,
     "member": 2,
     "meeting": 1,
     "reading": 3,
