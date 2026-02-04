@@ -6,7 +6,7 @@
       "id": 1,
       "name": "Meg Test",
       "email": "megsy.metcalf@gmail.com",
-      "isAdmin": false
+      "isAdmin": true
     }
   ],
   "meetings": [],
