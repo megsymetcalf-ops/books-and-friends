@@ -1,0 +1,23 @@
+{
+  "clubName": "Book Club",
+  "books": [],
+  "members": [],
+  "meetings": [],
+  "readings": [],
+  "reviews": [],
+  "transactions": [],
+  "sharedConfig": {
+    "username": "megsymetcalf-ops",
+    "repo": "books-and-friends",
+    "path": "data/bookclub.json",
+    "sharedToken": "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"
+  },
+  "nextId": {
+    "book": 1,
+    "member": 1,
+    "meeting": 1,
+    "reading": 1,
+    "review": 1,
+    "transaction": 1
+  }
+}
