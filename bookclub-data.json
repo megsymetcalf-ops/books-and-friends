@@ -1,58 +1,29 @@
 {
   "books": [
     {
-      "id": 1770206605980,
-      "title": "Winter Garden",
-      "author": "Kristin Hannah, Susan Ericksen, InÃÂÃÂ©s Belaustegui Trias",
-      "genre": "Fiction",
-      "year": "2022",
-      "isbn": "978-1529089578",
-      "notes": "",
-      "dateAdded": "2026-02-04T12:03:25.980Z"
+      "id": 1,
+      "title": "A Gentleman in Moscow",
+      "author": "Amor Towles",
+      "isbn": "",
+      "year": 2016
     }
   ],
-  "members": [
-    {
-      "id": 1770206535985,
-      "name": "Meg Metcalf",
-      "email": "megsy.metcalf@gmail.com",
-      "phone": "",
-      "joinDate": "2024-08-04",
-      "booksRead": 1
-    }
-  ],
-  "meetings": [
-    {
-      "id": 1770206556753,
-      "date": "2026-02-13",
-      "hostId": 1770206535985,
-      "bookId": null,
-      "location": "Meg's house - 6p.m",
-      "notes": ""
-    }
-  ],
-  "readings": [
-    {
-      "id": 1770206618169,
-      "memberId": 1770206535985,
-      "bookId": 1770206605980,
-      "dateCompleted": "2026-02-04"
-    }
-  ],
-  "reviews": [
-    {
-      "id": 1770206640456,
-      "memberId": 1770206535985,
-      "bookId": 1770206605980,
-      "rating": 4,
-      "text": "Loved it!",
-      "date": "2026-02-04T12:04:00.456Z"
-    }
-  ],
+  "members": [],
+  "meetings": [],
+  "readings": [],
+  "reviews": [],
   "transactions": [],
   "sharedConfig": {
     "username": "megsymetcalf-ops",
     "repo": "books-and-friends",
     "path": "bookclub-data.json"
+  },
+  "nextId": {
+    "book": 2,
+    "member": 1,
+    "meeting": 1,
+    "reading": 1,
+    "review": 1,
+    "transaction": 1
   }
 }
