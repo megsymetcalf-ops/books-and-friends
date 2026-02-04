@@ -1,125 +1,23 @@
 {
-  "books": [
-    {
-      "id": 1,
-      "title": "A Gentleman in Moscow",
-      "author": "Amor Towles",
-      "isbn": "",
-      "year": 2016
-    },
-    {
-      "id": 3,
-      "title": "The Thursday Murder Club",
-      "author": "Richard Osman",
-      "isbn": "",
-      "year": 2020
-    },
-    {
-      "id": 4,
-      "title": "Winter garden",
-      "author": "Kristin Hannah, Susan Ericksen,I Belaustegui Trias",
-      "isbn": "",
-      "year": 2010,
-      "genre": ""
-    },
-    {
-      "id": 6,
-      "title": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "isbn": "",
-      "year": 1813
-    }
-  ],
-  "members": [
-    {
-      "id": 1,
-      "name": "Meg Metcalf ",
-      "email": "megsy.metcalf@gmail.com",
-      "isAdmin": true
-    },
-    {
-      "id": 2,
-      "name": "Debbie Rautenbach",
-      "email": "d.rautenbach@icloud.com",
-      "isAdmin": true
-    },
-    {
-      "id": 4,
-      "name": "Meg Test",
-      "email": "megan_metcalf@hotmail.co.uk",
-      "isAdmin": false
-    }
-  ],
-  "meetings": [
-    {
-      "id": 1,
-      "date": "2026-02-13T18:00",
-      "time": "18:00",
-      "hostId": 1,
-      "bookId": null,
-      "location": "190 Spurwing "
-    }
-  ],
-  "readings": [
-    {
-      "id": 1,
-      "memberId": 1,
-      "bookId": 1,
-      "dateCompleted": "2026-02-04"
-    },
-    {
-      "id": 2,
-      "memberId": 1,
-      "bookId": 3,
-      "dateCompleted": "2026-02-04"
-    },
-    {
-      "id": 3,
-      "memberId": 1,
-      "bookId": 4,
-      "dateCompleted": "2026-02-04"
-    }
-  ],
-  "reviews": [
-    {
-      "id": 1,
-      "memberId": 1,
-      "bookId": 1,
-      "rating": 5,
-      "text": "Best book I've read in ages.",
-      "date": "2026-02-04"
-    },
-    {
-      "id": 2,
-      "memberId": 1,
-      "bookId": 3,
-      "rating": 4,
-      "text": "Fun and light-hearted with fairly decent values other than murder",
-      "date": "2026-02-04"
-    }
-  ],
-  "transactions": [
-    {
-      "id": 1,
-      "type": "contribution",
-      "memberId": 1,
-      "amount": 690,
-      "description": "Balance Adjustment: Initial balance",
-      "date": "2026-02-04"
-    }
-  ],
+  "clubName": "Book Club",
+  "books": [],
+  "members": [],
+  "meetings": [],
+  "readings": [],
+  "reviews": [],
+  "transactions": [],
   "sharedConfig": {
     "username": "megsymetcalf-ops",
     "repo": "books-and-friends",
-    "path": "bookclub-data.json"
+    "path": "bookclub-data.json",
+    "sharedToken": "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"
   },
   "nextId": {
-    "book": 7,
-    "member": 5,
-    "meeting": 2,
-    "reading": 4,
-    "review": 3,
-    "transaction": 2
-  },
-  "clubName": "Books and Friends"
+    "book": 1,
+    "member": 1,
+    "meeting": 1,
+    "reading": 1,
+    "review": 1,
+    "transaction": 1
+  }
 }
