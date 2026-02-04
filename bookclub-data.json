@@ -21,9 +21,9 @@
   "members": [
     {
       "id": 1,
-      "name": "Meg Test",
+      "name": "Meg Metcalf",
       "email": "megsy.metcalf@gmail.com",
-      "isAdmin": false
+      "isAdmin": true
     }
   ],
   "meetings": [],
