@@ -10,7 +10,7 @@
     {
       "id": 2,
       "title": "Winter garden",
-      "author": "Kristin Hannah, Susan Ericksen, InÃ©s Belaustegui Trias",
+      "author": "Kristin Hannah, Susan Ericksen, InÃÂ©s Belaustegui Trias",
       "isbn": "",
       "year": 2010
     }
@@ -24,7 +24,14 @@
     }
   ],
   "meetings": [],
-  "readings": [],
+  "readings": [
+    {
+      "id": 1,
+      "memberId": 1,
+      "bookId": 1,
+      "dateCompleted": "2026-02-04"
+    }
+  ],
   "reviews": [],
   "transactions": [
     {
@@ -45,7 +52,7 @@
     "book": 3,
     "member": 2,
     "meeting": 1,
-    "reading": 1,
+    "reading": 2,
     "review": 1,
     "transaction": 2
   }
