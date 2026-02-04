@@ -1,5 +1,4 @@
 {
-  "clubName": "Book Club",
   "books": [
     {
       "id": 1,
@@ -118,5 +117,6 @@
     "reading": 4,
     "review": 4,
     "transaction": 2
-  }
+  },
+  "clubName": "Book Club"
 }
