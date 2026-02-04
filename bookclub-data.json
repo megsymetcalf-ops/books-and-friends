@@ -36,6 +36,12 @@
       "name": "Meg Test",
       "email": "megan_metcalf@hotmail.co.uk",
       "isAdmin": false
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test@bookclub.com",
+      "isAdmin": false
     }
   ],
   "meetings": [
@@ -111,7 +117,7 @@
   },
   "nextId": {
     "book": 4,
-    "member": 3,
+    "member": 4,
     "meeting": 2,
     "reading": 4,
     "review": 4,
