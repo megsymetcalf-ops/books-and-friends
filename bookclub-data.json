@@ -52,6 +52,12 @@
       "memberId": 1,
       "bookId": 2,
       "dateCompleted": "2026-02-04"
+    },
+    {
+      "id": 3,
+      "memberId": 1,
+      "bookId": 3,
+      "dateCompleted": "2026-02-04"
     }
   ],
   "reviews": [
@@ -83,7 +89,7 @@
     "book": 4,
     "member": 3,
     "meeting": 1,
-    "reading": 3,
+    "reading": 4,
     "review": 3,
     "transaction": 1
   }
