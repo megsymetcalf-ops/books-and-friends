@@ -3,7 +3,7 @@
     {
       "id": 1770206605980,
       "title": "Winter Garden",
-      "author": "Kristin Hannah, Susan Ericksen, Inés Belaustegui Trias",
+      "author": "Kristin Hannah, Susan Ericksen, InÃ©s Belaustegui Trias",
       "genre": "Fiction",
       "year": "2022",
       "isbn": "978-1529089578",
@@ -19,6 +19,14 @@
       "phone": "",
       "joinDate": "2024-08-04",
       "booksRead": 1
+    },
+    {
+      "id": 1770214320591,
+      "name": "Debbie Rautenbach",
+      "email": "",
+      "phone": "",
+      "joinDate": "2026-02-04",
+      "booksRead": 0
     }
   ],
   "meetings": [
