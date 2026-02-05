@@ -614,69 +614,37 @@
                 <p style="margin-top: 15px;"><small>Use the "Refresh Data" button below if you want to manually check for updates, or "Save Data" to force a save.</small></p>
             </div>
 
-            <div class="success-box" id="sharedConfigLoadedBox" style="display: none;">
-                <h4>✅ Ready to Log In!</h4>
-                <p>Your club is set up and ready. Just enter your email address below to log in!</p>
+            <div class="success-box" id="repoConfiguredBox" style="display: none;">
+                <h4>✅ Repository Configured</h4>
+                <p>Repository settings loaded from URL. You're all set!</p>
+                <p><strong>Repository:</strong> <span id="repoInfo"></span></p>
             </div>
 
-            <div class="warning-box" id="noSharedConfigBox" style="display: none;">
-                <h4>⚠️ Club Not Set Up Yet</h4>
-                <p>Your club administrator needs to complete the setup in the Admin Setup tab before members can log in.</p>
-            </div>
-
-            <div class="warning-box">
-                <h4>👤 Important: How Login Works</h4>
-                <p><strong>The app identifies you by your email address.</strong> Once you enter your email, the app will:</p>
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>Check if you exist as a member in the club</li>
-                    <li>Automatically determine if you have admin privileges</li>
-                    <li>Save your email locally so you don't have to re-enter it</li>
-                </ul>
-                <p style="margin-top: 10px;"><strong>Note:</strong> You must be added as a member by an admin before you can log in.</p>
-            </div>
-
-            <div id="loginUserRoleInfo" style="margin-top: 20px;">
-                <div class="success-box" id="roleInfoBox" style="display: none;">
-                    <h4>✅ Logged in as: <span id="loginCurrentRole">Standard User</span></h4>
-                    <p id="roleDescription">Welcome to the book club!</p>
-                </div>
+            <div class="warning-box" id="noRepoConfigBox" style="display: none;">
+                <h4>⚠️ Use the Correct Link</h4>
+                <p>Make sure you're using the link your administrator shared with you. It should look like:</p>
+                <p style="font-family: monospace; background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                    https://megsymetcalf-ops.github.io/books-and-friends/?repo=username/reponame&file=data.json
+                </p>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
+                <label>Shared Access Token *</label>
+                <input type="password" id="sharedTokenSimple" placeholder="ghp_xxxxxxxxxxxx">
+                <small style="color: #6c757d; display: block; margin-top: 5px;">
+                    Your admin will give you this token. You only need to enter it once - it will be saved on your device.
+                </small>
+            </div>
+
+            <div class="form-group">
                 <label>Your Email Address *</label>
                 <input type="email" id="userEmail" placeholder="your.email@example.com">
                 <small style="color: #6c757d; display: block; margin-top: 5px;">
-                    This identifies you as a member. You must be added to the Members list by an admin.
+                    The email address your admin added for you in the Members list.
                 </small>
             </div>
 
-            <div class="form-group" id="adminTokenContainer" style="display: none;">
-                <label>Your Personal GitHub Token (Admin Only)</label>
-                <input type="password" id="adminGithubToken" placeholder="ghp_xxxxxxxxxxxx">
-                <small style="color: #6c757d; display: block; margin-top: 5px;">
-                    As an admin, you can optionally use your own token for admin operations.
-                </small>
-            </div>
-
-            <div class="form-group" id="sharedTokenContainer" style="display: none;">
-                <label>Shared Access Token (First-Time Setup Only) *</label>
-                <input type="password" id="sharedTokenInput" placeholder="ghp_xxxxxxxxxxxx">
-                <small style="color: #6c757d; display: block; margin-top: 5px;">
-                    This is the GitHub token that all members will use. You only need to enter this once during initial setup.
-                </small>
-            </div>
-
-            <div class="form-group" id="adminCheckboxContainer">
-                <label>
-                    <input type="checkbox" id="loginIsAdminCheckbox" onchange="toggleAdminModeLogin()">
-                    I am setting up the club for the first time
-                </label>
-                <small style="color: #6c757d; display: block; margin-top: 5px;">
-                    Only check this if you're the very first person setting up the club. You'll need to enter the shared token and configure the repository.
-                </small>
-            </div>
-
-            <button class="btn" onclick="saveLoginConfig()">Log In</button>
+            <button class="btn" onclick="simpleLogin()">Log In</button>
             <button class="btn btn-secondary" onclick="loadFromGithub()">Refresh Data</button>
             <button class="btn btn-secondary" onclick="saveToGithub()">Save Data</button>
 
@@ -1263,12 +1231,14 @@ To Kill a Mockingbird by Harper Lee"></textarea>
         // Data structure
         let data = {
             clubName: 'Book Club',  // Default name, can be changed by admin
+            monthlyFee: 0,  // Monthly membership fee
             books: [],
             members: [],
             meetings: [],
             readings: [],
             reviews: [],
             transactions: [],
+            payments: [],  // New: monthly payment tracking
             sharedConfig: null,  // Admin-configured settings
             nextId: {
                 book: 1,
@@ -1276,7 +1246,8 @@ To Kill a Mockingbird by Harper Lee"></textarea>
                 meeting: 1,
                 reading: 1,
                 review: 1,
-                transaction: 1
+                transaction: 1,
+                payment: 1
             }
         };
 
@@ -1293,6 +1264,29 @@ To Kill a Mockingbird by Harper Lee"></textarea>
 
         // Initialize app
         function initializeApp() {
+            // Check for URL parameters first
+            const urlParams = new URLSearchParams(window.location.search);
+            const repoParam = urlParams.get('repo'); // Format: "username/reponame"
+            const fileParam = urlParams.get('file'); // Format: "path/to/file.json"
+            
+            if (repoParam && fileParam) {
+                const [username, repoName] = repoParam.split('/');
+                if (username && repoName) {
+                    // Store in shared config from URL
+                    if (!data.sharedConfig) {
+                        data.sharedConfig = {};
+                    }
+                    data.sharedConfig.username = username;
+                    data.sharedConfig.repo = repoName;
+                    data.sharedConfig.path = fileParam;
+                    
+                    // Save to local storage
+                    localStorage.setItem('bookClubSharedConfig', JSON.stringify(data.sharedConfig));
+                    
+                    console.log('Repository configured from URL:', username, repoName, fileParam);
+                }
+            }
+            
             loadLocalConfig();
             loadLocalData();
             updateAllViews();
@@ -1378,6 +1372,108 @@ To Kill a Mockingbird by Harper Lee"></textarea>
             }
         }
 
+        async function simpleLogin() {
+            const sharedToken = document.getElementById('sharedTokenSimple').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            
+            console.log('=== SIMPLE LOGIN ===');
+            console.log('Email:', email);
+            console.log('Has token:', !!sharedToken);
+            console.log('Has shared config:', !!data.sharedConfig);
+            
+            if (!email) {
+                alert('Please enter your email address.');
+                return;
+            }
+            
+            if (!sharedToken) {
+                alert('Please enter the shared access token (your admin will give this to you).');
+                return;
+            }
+            
+            // Check if repo is configured (from URL or previously saved)
+            if (!data.sharedConfig || !data.sharedConfig.username || !data.sharedConfig.repo || !data.sharedConfig.path) {
+                alert('Repository not configured.\n\nMake sure you\'re using the correct URL that your admin shared with you.\n\nIt should look like:\nhttps://your-site.github.io/your-app/?repo=username/reponame&file=data.json');
+                return;
+            }
+            
+            // Save the shared token
+            data.sharedConfig.sharedToken = sharedToken;
+            localStorage.setItem('bookClubSharedConfig', JSON.stringify(data.sharedConfig));
+            
+            // Save user email
+            userConfig.email = email;
+            
+            // Load data from GitHub
+            updateSyncStatus('syncing', 'Loading data...');
+            try {
+                await loadFromGithub(true);
+                console.log('Data loaded. Members:', data.members.length);
+                console.log('Club name:', data.clubName);
+                updateSyncStatus('success', 'Data loaded');
+            } catch (error) {
+                console.error('Load error:', error);
+                updateSyncStatus('error', 'Load failed');
+                alert('Could not load data from GitHub.\n\nPlease check:\n1. The shared token is correct\n2. You have internet connection\n3. The repository exists\n\nError: ' + error.message);
+                return;
+            }
+            
+            // Check if user exists in members list
+            const member = data.members.find(m => m.email && m.email.toLowerCase() === email.toLowerCase());
+            
+            if (!member) {
+                alert('Email not found in members list.\n\nEmail you entered: ' + email + '\n\nPlease ask an admin to add you as a member first.');
+                return;
+            }
+            
+            // Set admin status
+            userConfig.isAdmin = member.isAdmin || false;
+            localStorage.setItem('bookClubUserConfig', JSON.stringify(userConfig));
+            
+            // Update UI
+            updateAdminUI();
+            updateLoginStatus();
+            updateClubName();
+            updateAllViews();
+            
+            alert(`Welcome to ${data.clubName || 'the Book Club'}!\n\nLogged in as: ${member.name}\nRole: ${userConfig.isAdmin ? 'Administrator' : 'Member'}`);
+            
+            // Start auto-sync
+            if (isConfigured()) {
+                autoSync();
+            }
+        }
+
+        function updateLoginStatus() {
+            const hasConfig = data.sharedConfig && data.sharedConfig.username;
+            const repoConfiguredBox = document.getElementById('repoConfiguredBox');
+            const noRepoConfigBox = document.getElementById('noRepoConfigBox');
+            
+            if (hasConfig && repoConfiguredBox && noRepoConfigBox) {
+                repoConfiguredBox.style.display = 'block';
+                noRepoConfigBox.style.display = 'none';
+                document.getElementById('repoInfo').textContent = 
+                    `${data.sharedConfig.username}/${data.sharedConfig.repo} - ${data.sharedConfig.path}`;
+            } else if (noRepoConfigBox) {
+                if (repoConfiguredBox) repoConfiguredBox.style.display = 'none';
+                noRepoConfigBox.style.display = 'block';
+            }
+            
+            // Pre-fill token if already saved
+            const savedToken = data.sharedConfig && data.sharedConfig.sharedToken;
+            if (savedToken && document.getElementById('sharedTokenSimple')) {
+                document.getElementById('sharedTokenSimple').value = savedToken;
+            }
+            
+            // Pre-fill email if already saved
+            if (userConfig.email && document.getElementById('userEmail')) {
+                document.getElementById('userEmail').value = userConfig.email;
+            }
+            
+            syncLoginIndicators();
+        }
+
+        // Old complex login function - keeping for backward compatibility during transition
         async function saveLoginConfig() {
             const email = document.getElementById('userEmail').value.trim();
             
