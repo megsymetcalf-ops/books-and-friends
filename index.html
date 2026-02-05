@@ -1935,6 +1935,13 @@ To Kill a Mockingbird by Harper Lee"></textarea>
         async function loadFromGithub(silent = false) {
             const config = getGithubConfig();
             
+            console.log('=== LOAD FROM GITHUB DEBUG ===');
+            console.log('Config:', config);
+            console.log('Has config:', !!config);
+            console.log('Has token:', !!(config && config.token));
+            console.log('Token length:', config && config.token ? config.token.length : 0);
+            console.log('Token starts with:', config && config.token ? config.token.substring(0, 4) : 'none');
+            
             if (!config || !config.token) {
                 if (!silent) alert('Please configure your GitHub settings first.');
                 return;
@@ -1942,16 +1949,19 @@ To Kill a Mockingbird by Harper Lee"></textarea>
 
             if (!silent) updateSyncStatus('syncing', 'Loading...');
 
+            const url = `https://api.github.com/repos/${config.username}/${config.repo}/contents/${config.path}`;
+            console.log('Fetching from URL:', url);
+
             try {
-                const response = await fetch(
-                    `https://api.github.com/repos/${config.username}/${config.repo}/contents/${config.path}`,
-                    {
-                        headers: {
-                            'Authorization': `token ${config.token}`,
-                            'Accept': 'application/vnd.github.v3+json'
-                        }
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `token ${config.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
                     }
-                );
+                });
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
 
                 if (response.ok) {
                     const fileData = await response.json();
