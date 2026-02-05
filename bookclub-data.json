@@ -1,0 +1,21 @@
+{
+  "clubName": "Books and Friends",
+  "monthlyFee": 50,
+  "books": [],
+  "members": [],
+  "meetings": [],
+  "readings": [],
+  "reviews": [],
+  "transactions": [],
+  "payments": [],
+  "sharedConfig": null,
+  "nextId": {
+    "book": 1,
+    "member": 1,
+    "meeting": 1,
+    "reading": 1,
+    "review": 1,
+    "transaction": 1,
+    "payment": 1
+  }
+}
