@@ -644,6 +644,16 @@
                 </small>
             </div>
 
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="firstAdminCheckbox">
+                    I'm setting up the club for the first time (make me admin)
+                </label>
+                <small style="color: #6c757d; display: block; margin-top: 5px;">
+                    Only check this if you're the very first person setting up the club. You'll be added as the first admin member automatically.
+                </small>
+            </div>
+
             <button class="btn" onclick="simpleLogin()">Log In</button>
             <button class="btn btn-secondary" onclick="loadFromGithub()">Refresh Data</button>
             <button class="btn btn-secondary" onclick="saveToGithub()">Save Data</button>
@@ -1375,11 +1385,13 @@ To Kill a Mockingbird by Harper Lee"></textarea>
         async function simpleLogin() {
             const sharedToken = document.getElementById('sharedTokenSimple').value.trim();
             const email = document.getElementById('userEmail').value.trim();
+            const isFirstAdmin = document.getElementById('firstAdminCheckbox').checked;
             
             console.log('=== SIMPLE LOGIN ===');
             console.log('Email:', email);
             console.log('Has token:', !!sharedToken);
             console.log('Has shared config:', !!data.sharedConfig);
+            console.log('Is first admin:', isFirstAdmin);
             
             if (!email) {
                 alert('Please enter your email address.');
@@ -1413,9 +1425,91 @@ To Kill a Mockingbird by Harper Lee"></textarea>
                 updateSyncStatus('success', 'Data loaded');
             } catch (error) {
                 console.error('Load error:', error);
-                updateSyncStatus('error', 'Load failed');
-                alert('Could not load data from GitHub.\n\nPlease check:\n1. The shared token is correct\n2. You have internet connection\n3. The repository exists\n\nError: ' + error.message);
-                return;
+                
+                // If file doesn't exist (404), create it
+                if (error.message && error.message.includes('404')) {
+                    console.log('File not found - creating initial file...');
+                    updateSyncStatus('syncing', 'Creating initial data file...');
+                    
+                    try {
+                        // Initialize with club name from user
+                        const clubName = prompt('Welcome! What should we call your book club?', 'Books and Friends');
+                        if (clubName) {
+                            data.clubName = clubName;
+                        }
+                        
+                        // If first admin, add them as the first member
+                        if (isFirstAdmin) {
+                            const name = prompt('What is your name?', '');
+                            if (name) {
+                                data.members.push({
+                                    id: data.nextId.member++,
+                                    name: name,
+                                    email: email,
+                                    isAdmin: true
+                                });
+                            }
+                        }
+                        
+                        // Save initial file
+                        await saveToGithub();
+                        updateSyncStatus('success', 'Initial setup complete!');
+                        
+                        if (isFirstAdmin) {
+                            userConfig.isAdmin = true;
+                            localStorage.setItem('bookClubUserConfig', JSON.stringify(userConfig));
+                            updateAdminUI();
+                            alert('Perfect! Your book club is set up.\n\nYou are now logged in as an administrator.\n\nYou can start adding books, members, and meetings!');
+                        } else {
+                            alert('Great! Your book club data file has been created.\n\nYou can now add yourself as the first member!');
+                        }
+                        
+                        updateClubName();
+                        updateAllViews();
+                        
+                        if (isConfigured()) {
+                            autoSync();
+                        }
+                        return;
+                    } catch (saveError) {
+                        console.error('Error creating file:', saveError);
+                        updateSyncStatus('error', 'Setup failed');
+                        alert('Could not create the initial data file.\n\nError: ' + saveError.message + '\n\nPlease make sure:\n1. The repository exists\n2. The token has write access');
+                        return;
+                    }
+                } else {
+                    updateSyncStatus('error', 'Load failed');
+                    alert('Could not load data from GitHub.\n\nPlease check:\n1. The shared token is correct\n2. You have internet connection\n3. The repository exists\n4. The file path is correct\n\nError: ' + error.message);
+                    return;
+                }
+            }
+            
+            // If first admin and no members exist, add them
+            if (isFirstAdmin && data.members.length === 0) {
+                const name = prompt('What is your name?', '');
+                if (name) {
+                    data.members.push({
+                        id: data.nextId.member++,
+                        name: name,
+                        email: email,
+                        isAdmin: true
+                    });
+                    
+                    // Save the updated member list
+                    await saveToGithub();
+                    
+                    userConfig.isAdmin = true;
+                    localStorage.setItem('bookClubUserConfig', JSON.stringify(userConfig));
+                    updateAdminUI();
+                    updateAllViews();
+                    
+                    alert('Perfect! You are now set up as the first administrator.\n\nYou can start adding books, members, and meetings!');
+                    
+                    if (isConfigured()) {
+                        autoSync();
+                    }
+                    return;
+                }
             }
             
             // Check if user exists in members list
